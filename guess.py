@@ -18,26 +18,28 @@ def guessing():
 
 # Player 2 guesses a number.        
     while count < guessnum:
-        try:
-            guess = int(input("Player 2, guess a number: "))
-            count += 1
-        except ValueError:
-            print("Must be a whole number.")
+        while True:
+            if count >= 1:
+                print((guessnum - count), "tries remaining.")
+            try:
+                guess = int(input("Player 2, guess a number: "))
+                count += 1
+                break
+            except ValueError:
+                print("Must be a whole number.")
 
 # The system now checks if the guessed number is correct.
 # If not, player 2 is given a hint and guesses again.   
         if guess == secret:
-            print("You got it in ", count, " tries!")
+            print("\n\tYou Win!\n\nYou got it in ", count, " tries!")
             exit()
-        elif guess < secret:
+        elif guess < secret and count < guessnum:
             print("Guess higher!")
-        elif guess > secret:
+        elif guess > secret and count < guessnum:
             print("Guess lower!")
-        else:
-            print("Invalid Option")
 
     if count >= guessnum:
-        print("0 tries remaining.\nThe number was ", secret, ".")
+        print("\n\tYou Lost!\n\n0 tries remaining.\nThe number was ", secret, ".")
 
 # Run the following code only if I run it.
 if __name__ == "__main__":

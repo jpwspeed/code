@@ -27,7 +27,7 @@ def rand_guess():
             except ValueError:
                 print("Must be a whole number.")
         if guess == secret:
-            print("You got it!")
+            print("\n\tYou Win!\n\nYou got it in", count, "tries!")
             exit()
         elif guess < secret and count < guessnum:
             print("Guess higher!")
