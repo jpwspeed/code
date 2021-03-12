@@ -10,6 +10,8 @@ def rand_guess():
 # the random number is generated on each run
     secret = random.randrange(1,100)
 
+# Number of tries system shamelessly stolen from Beauseph2187.
+# https://github.com/Beauseph2187/
     guessnum = round(math.log(100 - 1 + 1, 2))
     print("\n\tYou have", guessnum, "chances to guess the number!\n")
     count = 0
