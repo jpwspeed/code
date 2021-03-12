@@ -1,37 +1,45 @@
+import math
+
 def guessing():
 
-# Player 1 picks a number to guess. This loops until a
-# whole number is entered, where a break moves it along.
+# Player 1 picks a number to guess.
     while True:
         try:
-            secret = int(input("Player 1, choose a number: "))
+            secret = int(input("Player 1, choose a number between 1 and 100: "))
             break
         except ValueError:
             print("Must be a whole number.")
 
-# Player 2 guesses a number. This uses a nested while loop.
-# The nested loop will loop the guess until a whole
-# number is entered. It then continues the original loop,
-# allowing player 2 to guess again if they were wrong.       
-    while True:
+# Number of tries system shamelessly stolen from Beauseph2187.
+# https://github.com/Beauseph2187/
+    guessnum = round(math.log(100 - 1 + 1, 2))
+    print("\n\tYou have ", guessnum, " chances to guess the number!\n")
+    count = 0
+
+# Player 2 guesses a number.        
+    while count < guessnum:
         while True:
+            if count >= 1:
+                print((guessnum - count), "tries remaining.")
             try:
                 guess = int(input("Player 2, guess a number: "))
+                count += 1
                 break
             except ValueError:
-                print("Must be a whole number.")  
-        if guess == secret:
-            print("You got it!")
-            exit()
-        elif guess < secret:
-            print("Guess higher!")
-        elif guess > secret:
-            print("Guess lower!")
-        else:
-            print("Invalid Option")
+                print("Must be a whole number.")
 
-# The else at the end of the loop is used as a catch-all.
-# There should be nothing entered that can reach the else.
+# The system now checks if the guessed number is correct.
+# If not, player 2 is given a hint and guesses again.   
+        if guess == secret:
+            print("\n\tYou Win!\n\nYou got it in ", count, " tries!")
+            exit()
+        elif guess < secret and count < guessnum:
+            print("Guess higher!")
+        elif guess > secret and count < guessnum:
+            print("Guess lower!")
+
+    if count >= guessnum:
+        print("\n\tYou Lost!\n\n0 tries remaining.\nThe number was ", secret, ".")
 
 # Run the following code only if I run it.
 if __name__ == "__main__":
