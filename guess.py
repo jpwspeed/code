@@ -2,26 +2,21 @@ def guessing():
 
 # Player 1 picks a number to guess.
     while True:
-        num1 = input("Player 1, choose a number: ")
-        if num1 == int:
-            chosen_num = int(num1)
-        else:
-            print("Choose a whole number")
+        try:
+            secret = int(input("Player 1, choose a number: "))
             break
-    
-    while True:
-        num2 = input("Player 2, guess a number: ")
-        if num2 == int:
-            break
-        else:
-            print("Choose a whole number")
-            break
-    
-    
-    secret = chosen_num
+        except ValueError:
+            print("Must be a whole number.")
 
+# Player 2 guesses a number.        
     while True:
-        guess = int(num2)
+        try:
+            guess = int(input("Player 2, guess a number: "))
+        except ValueError:
+            print("Must be a whole number.")
+
+# The system now checks if the guessed number is correct.
+# If not, player 2 is given a hint and guesses again.   
         if guess == secret:
             print("You got it!")
             exit()

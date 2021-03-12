@@ -5,11 +5,15 @@ import random
 def rand_guess():
 # random number generated to guess
 # the random number is generated on each run
-    randomNum = random.randrange(1,100)
-    secret = randomNum
+    secret = random.randrange(1,100)
 
     while True:
-        guess = int(input("Guess a number: "))
+        while True:
+            try:
+                guess = int(input("Guess a number: "))
+                break
+            except ValueError:
+                print("Must be a whole number.")
         if guess == secret:
             print("You got it!")
             exit()
