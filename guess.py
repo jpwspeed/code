@@ -9,6 +9,7 @@ def guessing():
             break
         except ValueError:
             print("Must be a whole number.")
+
 # Number of tries system shamelessly stolen from Beauseph2187.
 # https://github.com/Beauseph2187/
     guessnum = round(math.log(100 - 1 + 1, 2))
